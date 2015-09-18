@@ -17,7 +17,7 @@ class Intermediate
 	def intermediate_start_game
 		#this instantiates the beginning of the game by printing some texts 
 		#and calling the beginner_user_play
-		puts "I have generated a intermediate sequence with five made up of:"+"(b)lue".blue+"," +" (c)yan".cyan+"," +" (g)reen".green+" (y)ellow, (i)ndigo and (v)iolet. You are to get the sequence in which the colors appeared e.g. BCGV for" +" (b)lue".blue+","+" (c)yan".cyan+", (g)reen".green+", (y)ellow, (i)ndigo and (v)iolet.\nNOTE: You have 12 guesses to get this color or you loose the game!\nUse (q)uit at any time to end the game.\nReady to play?\nWhat is your guess?"
+		puts "I have generated a intermediate sequence with five made up of:"+"(b)lue".blue+"," +" (c)yan".cyan+"," +" (g)reen".green+" (y)ellow".yellow+ ", (i)ndigo and/or (v)iolet. You are to get the sequence in which the colors appeared e.g. BCGV for" +" (b)lue".blue+","+" (c)yan".cyan+", (g)reen".green+","+ " (y)ellow".yellow+ ","+ "(i)ndigo and (v)iolet.\nNOTE: You have 12 guesses to get this color or you loose the game!\nUse"+ "(q)uit".red+ "at any time to end the game.\nReady to play?\nWhat is your guess?"
 		
 			intermediate_user_input
 	
@@ -45,7 +45,6 @@ class Intermediate
 		evaluate_guess(user_guess)
 		if user_guess == 'q'
 			GameFlow.new.quit
-			system(exit)
 		elsif user_guess == 'c'
 			$trial += 1
 			puts "The code is #{@comp}."+ "\nYou Can Try Again!!!".blue
@@ -57,19 +56,17 @@ class Intermediate
 			$trial +=1
 			puts "It's too long. Attempts left is #{12-$trial}. So try again:"
 		elsif @comp == @result[:matches] #perfect match
-			
 			$trial +=1
 			time_taken = Time.now.to_i - time_begin 
-			puts "Congratulations! You have completed the sequence after #{$trial} in #{time_used(time_taken)}"
+			puts "Congratulations! You have completed the sequence after".yellow+ " #{$trial}".magenta+ " guess in".yellow + " #{time_used(time_taken)}".magenta
 			intermediate_start_game
 			if user_guess == 'q'
 				GameFlow.new.quit
-				system(exit)
 				#this exits the game after the player types 'q'
 			end 
 		elsif @comp != @result[:matches]
 			$trial += 1
-			puts "#{user_guess} has #{@result[:matches].length} exact match(es), #{@result[:nomatches].length} near match(es) and you have #{12-$trial} guess(es) left.TRY AGAIN!!!"									
+			puts "#{user_guess} has".yellow+ " #{@result[:matches].length}".magenta+ " exact match(es),".yellow+ " #{@result[:nomatches].length}".magenta+ " partial match(es) and you have".yellow+ " #{12-$trial}".magenta+ " guess(es) left.\nTRY AGAIN!!!".yellow									
 		end
 	end
 	end

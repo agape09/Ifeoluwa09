@@ -10,7 +10,7 @@ class Beginner
 	
 		@comp = []
 		user_guess = []
-		$trial = 12
+		@trial = 12
 	end
 	def beginner_start_game
 		#this instantiates the beginning of the game by printing some texts and calling the beginner_user_play
@@ -20,7 +20,7 @@ class Beginner
 	
 	end
 
-	def self.beginner_random_select
+	def beginner_random_select
 		#this is a class method used to generate the computer guess
 		color = ['G', 'V', 'B', 'C']
 		@comp = []
@@ -31,40 +31,37 @@ class Beginner
 	end
 	def beginner_user_input
 		# this begins the player to play as a beginning level
-		$trial = 0
-		@comp = Beginner.beginner_random_select
+		@trial = 0
+		@comp = Beginner.new.beginner_random_select
 		time_begin = Time.now.to_i
 		loop do
-			break if $trial == 12
+			break if @trial == 12
 		user_guess = gets.chomp
 		evaluate_guess(user_guess)
 		if user_guess == 'q'
 			GameFlow.new.quit
-			system(exit)
 		elsif user_guess == 'c'
-			$trial += 1
+			@trial += 1
 			puts "The code is #{@comp}." +"\nYou Can Try Again!!!".blue
 			beginner_start_game
 		elsif user_guess.length < 4
-			$trial +=1
-			puts "It's too shot. Attempts left is #{12-$trial}. So try again:"
+			@trial +=1
+			puts "It's too shot. Attempts left is #{12-@trial}. So try again:"
 		elsif user_guess.length > 4
-			$trial +=1
-			puts "It's too long. Attempts left is #{12-$trial}. So try again:"
-
+			@trial +=1
+			puts "It's too long. Attempts left is #{12-@trial}. So try again:"
 		elsif @comp == @result[:matches] #perfect match
-			$trial +=1
+			@trial +=1
 			time_taken = Time.now.to_i - time_begin 
-			puts "Congratulations! You have completed the sequence after #{$trial} guess in #{time_used(time_taken)}"
+			puts "Congratulations! You have completed the sequence after".yellow+ " #{@trial}".magenta+ " guess in".yellow + " #{time_used(time_taken)}".magenta
 			beginner_start_game
 			if user_guess == 'q'
 				GameFlow.new.quit
-				system(exit)
 				#this exits the game after the player types 'q'
 			end
 		elsif @comp != @result[:matches]
-			$trial += 1
-			puts "#{user_guess} has #{@result[:matches].length} exact match(es), #{@result[:nomatches].length} near match(es) and you have #{12-$trial} guess(es) left.TRY AGAIN!!!"									
+			@trial += 1
+			puts "#{user_guess} has".yellow+ " #{@result[:matches].length}".magenta+ " exact match(es),".yellow+ " #{@result[:nomatches].length}".magenta+ " partial match(es) and you have".yellow+ " #{12-@trial}".magenta+ " guess(es) left.\nTRY AGAIN!!!".yellow									
 		end
 	end
 	end

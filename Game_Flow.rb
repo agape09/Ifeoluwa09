@@ -18,5 +18,6 @@ class GameFlow
 	def quit
 		#this quits the game when called
 		puts "Thanks for playing this game...\nSure you really enjoyed it. Goodbye!".red
+		system (exit)
 	end
 end

@@ -10,7 +10,7 @@ class GameInterface
 	def game_interface 
 
 		# method to display each interface of the game
-		puts "Welcome to MaStErMiNdGaMe...".yellow+" \n\nWould you like to" + " (p)lay".blue+", read the" + " (i)nstructions".magenta+ ", read a little" + " (b)ackground".green+ "\non MaStErMiNdGaMe or" +" (q)uit?".red
+		puts "\nWelcome to MaStErMiNdGaMe...".yellow+" \n\nWould you like to" + " (p)lay".blue+", read the" + " (i)nstructions".magenta+ ", read a little" + " (b)ackground".green+ "\non MaStErMiNdGaMe or" +" (q)uit?".red
 		#this dispalys the welcome message
 		puts game_flow_msg
 		puts game_select_level
@@ -27,12 +27,12 @@ class GameInterface
 			# this enables the player bo play the game
 		when "i"
 			GameFlow.new.instruction
-			welcome_message
+			 puts game_interface 
 			#this tells the player on how to play the game
 			#and at the same time takes the player back to the welcome message
 		when "b"
 			GameFlow.new.background
-			welcome_message
+			puts game_interface 
 			#this tells the player a little background of the game
 			#and at the same time takes the player back to the welcome message
 		when "q"
@@ -71,7 +71,6 @@ class GameInterface
 			puts "Invalid input...".red+ "\n\nSelect" + " (1) " + "for Beginner," + " (2) " + "for Intermediate or" + " (3) " + "for Advance"
 			if  $input == 'q'
 				GameFlow.new.quit
-				system(exit)
 				#this exits the game when the player types 'q'
 			else
 				game_select_msg
@@ -88,7 +87,6 @@ class GameInterface
 		$input = gets.chomp
 		if $input == "q"
 			GameFlow.new.quit
-			system (exit)
 			#this exits the game when the player types 'q'
 		elsif $input == "/a..z/"
 			name << $input
