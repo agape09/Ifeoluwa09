@@ -22,7 +22,7 @@ class Intermediate
 	
 	end
 
-	def self.intermediate_random_select
+	def intermediate_random_select
 		#this is a class method used to generate the computer guess
 		color = ['G', 'V', 'B', 'C', 'Y', 'I']
 		@comp = []
@@ -35,9 +35,8 @@ class Intermediate
 	def intermediate_user_input
 		# this begins the player to play as an intermediate level
 		$trial = 0
-		@comp = Intermediate.intermediate_random_select
+		@comp = intermediate_random_select
 		time_begin = Time.now.to_i
-		puts @comp
 		loop do
 			break if $trial == 12
 		user_guess = gets.chomp

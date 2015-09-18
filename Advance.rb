@@ -23,7 +23,7 @@ class Advance
 	
 	end
 
-	def self.advance_random_select
+	def advance_random_select
 		#this is a class method used to generate the computer guess
 		color = ['G', 'V', 'B', 'C', 'Y', 'I', 'R', 'M']
 		@comp = []
@@ -35,7 +35,7 @@ class Advance
 	def advance_user_input
 		# this begins the player to play as an intermediate level
 		$trial = 0
-		@comp = Advance.advance_random_select
+		@comp = advance_random_select
 		time_begin = Time.now.to_i
 		loop do
 			break if $trial == 12

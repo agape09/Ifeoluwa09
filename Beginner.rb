@@ -31,7 +31,7 @@ class Beginner
 	def beginner_user_input
 		# this begins the player to play as a beginning level
 		@trial = 0
-		@comp = Beginner.new.beginner_random_select
+		@comp = beginner_random_select
 		time_begin = Time.now.to_i
 		loop do
 			break if @trial == 12
