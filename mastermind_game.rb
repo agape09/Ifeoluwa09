@@ -1,7 +1,7 @@
-require_relative 'Messages'
+require_relative 'GameInterface'
 
 class MasterMind
 
-	Message.new.welcome_message
-	
+	GameInterface.new.game_interface
+
 end

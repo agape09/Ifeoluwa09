@@ -1,38 +1,42 @@
 require_relative 'Game_Flow'
 require_relative 'GameInterface'
 require_relative 'Time'
+require_relative 'EvaluateGuess'
 
 require 'colorize'
 #this is used to apply color to some part of the game print-out
-class Beginner
+
+class Advance
+
 	def initialize
+
 		@result = Hash.new
-	
 		@comp = []
 		user_guess = []
 		$trial = 12
 	end
-	def beginner_start_game
-		#this instantiates the beginning of the game by printing some texts and calling the beginner_user_play
-		puts "I have generated a beginner sequence with four elements made up of:"+"(b)lue".blue+"," +" (c)yan".cyan+"," +" (g)reen".green+" and (v)iolet. You are to get the sequence in which the colors appeared e.g. BCGV for" +" (b)lue".blue+","+" (c)yan".cyan+", (g)reen".green+" and (v)iolet.\nNOTE: You have 12 guesses to get this color or you loose the game!\nUse (q)uit at any time to end the game.\nReady to play?\nWhat is your guess?"
+	def advance_start_game
+		#this instantiates the beginning of the game by printing some texts 
+		#and calling the beginner_user_play to start the game
+		puts "I have generated a beginner sequence with six elements made up of:"+"(b)lue".blue+"," +" (c)yan".cyan+"," +" (g)reen".green+", (y)ellow, (i)ndigo, (r)ed, (m)agenta  and (v)iolet. You are to get the sequence in which the colors appeared e.g. BCGV for" +" (b)lue".blue+","+" (c)yan".cyan+", (g)reen".green+" and (v)iolet.\nNOTE: You have 12 guesses to get this color or you loose the game!\nUse (q)uit at any time to end the game.\nReady to play?\nWhat is your guess?"
 		
-			beginner_user_input
+			advance_user_input
 	
 	end
 
-	def self.beginner_random_select
+	def self.advance_random_select
 		#this is a class method used to generate the computer guess
-		color = ['G', 'V', 'B', 'C']
+		color = ['G', 'V', 'B', 'C', 'Y', 'I', 'R', 'M']
 		@comp = []
-		4.times do
-  		@comp << color[rand(4)]
+		6.times do
+  		@comp << color[rand(6)]
   		end
   		@comp
 	end
-	def beginner_user_input
-		# this begins the player to play as a beginning level
+	def advance_user_input
+		# this begins the player to play as an intermediate level
 		$trial = 0
-		@comp = Beginner.beginner_random_select
+		@comp = Advance.advance_random_select
 		time_begin = Time.now.to_i
 		loop do
 			break if $trial == 12
@@ -43,20 +47,19 @@ class Beginner
 			system(exit)
 		elsif user_guess == 'c'
 			$trial += 1
-			puts "The code is #{@comp}." +"\nYou Can Try Again!!!".blue
-			beginner_start_game
-		elsif user_guess.length < 4
+			puts "The code is #{@comp}. Attempt left: #{12-$trial}."+"\nYou Can Try Again!!!".blue
+			advance_start_game
+		elsif user_guess.length < 6
 			$trial +=1
 			puts "It's too shot. Attempts left is #{12-$trial}. So try again:"
-		elsif user_guess.length > 4
+		elsif user_guess.length > 6
 			$trial +=1
 			puts "It's too long. Attempts left is #{12-$trial}. So try again:"
-
 		elsif @comp == @result[:matches] #perfect match
 			$trial +=1
 			time_taken = Time.now.to_i - time_begin 
-			puts "Congratulations! You have completed the sequence after #{$trial} guess in #{time_used(time_taken)}"
-			beginner_start_game
+			puts "Congratulations! You have completed the sequence after #{$trial} in #{time_used(time_taken)}"
+			advance_start_game 
 			if user_guess == 'q'
 				GameFlow.new.quit
 				system(exit)
