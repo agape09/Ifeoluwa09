@@ -12,7 +12,6 @@ class Intermediate
 		@result = Hash.new
 		@comp = []
 		user_guess = []
-		$trial = 12
 	end
 	def intermediate_start_game
 		#this instantiates the beginning of the game by printing some texts 
@@ -66,7 +65,7 @@ class Intermediate
 			end 
 		elsif @comp != @result[:matches]
 			$trial += 1
-			puts "#{user_guess} has".yellow+ " #{@result[:matches].length}".magenta+ " exact match(es),".yellow+ " #{@result[:nomatches].length}".magenta+ " partial match(es) and you have".yellow+ " #{12-$trial}".magenta+ " guess(es) left.\nTRY AGAIN!!!".yellow									
+			puts "#{user_guess} has".yellow+ " #{@result[:matches].length}".magenta+ " exact match(es),".yellow+ " #{@result[:nomatches].length}".magenta+ "  match(es) and you have".yellow+ " #{12-$trial}".magenta+ " guess(es) left.\nTRY AGAIN!!!".yellow									
 		end
 	end
 	end

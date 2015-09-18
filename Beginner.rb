@@ -10,7 +10,6 @@ class Beginner
 	
 		@comp = []
 		user_guess = []
-		@trial = 12
 	end
 	def beginner_start_game
 		#this instantiates the beginning of the game by printing some texts and calling the beginner_user_play

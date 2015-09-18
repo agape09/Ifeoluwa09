@@ -13,7 +13,6 @@ class Advance
 		@result = Hash.new
 		@comp = []
 		user_guess = []
-		$trial = 12
 	end
 	def advance_start_game
 		#this instantiates the beginning of the game by printing some texts 
